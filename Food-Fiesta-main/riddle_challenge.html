@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Game</title>
+    <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            background-color: rgba(235, 240, 240, 0.9);
+             padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+        }
+         h1 {
+            color: #333;
+             margin-bottom: 20px;
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #riddle-container {
+           font-size: 1.2em;
+            margin-bottom: 20px;
+            min-height: 90px;
+            opacity: 0;
+             transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+       #riddle-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .riddle-text {
+            margin-bottom: 10px;
+        }
+        .riddle-text.marathi{
+              font-size: 1em;
+            color: #555;
+        }
+          .riddle-text.english{
+              font-size: 1.1em;
+            color: #333;
+        }
+        #answer-input {
+             padding: 10px;
+            border: 1px solid #ddd;
+           border-radius: 5px;
+             margin-right: 10px;
+             width: 70%;
+              transition: border-color 0.3s ease;
+         }
+          #answer-input:focus {
+             outline: none;
+             border-color: #007bff;
+          }
+        button {
+           padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+             border: none;
+           border-radius: 5px;
+             cursor: pointer;
+           transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+       #start-button{
+              padding: 15px 30px;
+              font-size:1.2em;
+            margin-top: 20px;
+        }
+        #timer {
+           font-size: 1.1em;
+            color: #777;
+            margin-bottom: 10px;
+               opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+         #timer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+       #result {
+           margin-top: 15px;
+            font-weight: bold;
+              opacity: 0;
+              transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        #result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #answer-display {
+            font-size: 1.1em;
+            color: #777;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        #answer-display.show {
+            opacity: 1;
+        }
+        .correct {
+           color: green;
+        }
+        .wrong {
+            color: red;
+        }
+        #congrats-message {
+            font-size: 2em;
+             color: #28a745;
+           margin-top: 20px;
+              display: none;
+            animation: fadeIn 2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+         .confetti-container {
+            position: absolute;
+           top: 0;
+           left: 0;
+             width: 100%;
+            height: 100%;
+           pointer-events: none;
+            overflow: hidden;
+        }
+         .confetti {
+             position: absolute;
+            width: 10px;
+           height: 10px;
+             background-color: gold;
+           border-radius: 50%;
+            animation: confettiFall 4s linear infinite;
+        }
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            #answer-input {
+               width: 65%;
+            }
+            #start-button {
+                 padding: 12px 25px;
+              font-size:1em;
+             }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Riddle Game</h1>
+          <button id="start-button">Start Game</button>
+        <div id="riddle-container"></div>
+        <input type="text" id="answer-input" placeholder="Enter your answer">
+        <button id="submit-button">Submit</button>
+        <div id="timer">Time: 30</div>
+         <div id="result"></div>
+        <div id="answer-display"></div>
+        <div id="congrats-message"></div>
+    </div>
+    <div class="confetti-container"></div>
+    <script src="riddle_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
